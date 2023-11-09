@@ -1,16 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export function Login() {
+export function RegisterBusiness() {
     const navigate = useNavigate();
     function auth() {
-        // if valid
+        // if all fields filled and no duplicate email
         navigate('/Map')
     }
     return (
         <div>
-            <header className="App-header">Login
-            <button onClick={() => auth()}>Login</button>
+            <header className="App-header">Register Business
+            <button onClick={() => auth()}>Submit</button>
             </header>
         </div>
     )
