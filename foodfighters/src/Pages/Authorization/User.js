@@ -1,5 +1,5 @@
 const user = {
-    name: 'Melanie',
+    name: 'Team 18',
     isBusiness: false,
     loggedIn: false,
 }
