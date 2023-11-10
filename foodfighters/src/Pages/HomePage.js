@@ -5,11 +5,13 @@ function HomePage() {
     const navigate = useNavigate();
     return (
         <div>
-            <header className="App-header">
-            Food Fighters
-            <button onClick={() => navigate('/Login')}>Login</button>
-            <button onClick={() => navigate('/RegisterBusiness')}>Register A Business</button>
-            <button onClick={() => navigate('/Register')}>Register A User</button>
+            <header className="Form-Header">
+                Food Fighters
+                <div className='Form'>
+                    <button onClick={() => navigate('/Login')}>Login</button>
+                    <button onClick={() => navigate('/RegisterBusiness')}>Register A Business</button>
+                    <button onClick={() => navigate('/Register')}>Register A User</button>
+                </div>
             </header>
         </div>
     );

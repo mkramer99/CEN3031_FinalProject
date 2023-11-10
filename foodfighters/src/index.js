@@ -8,6 +8,7 @@ import { RegisterBusiness } from './Pages/Authorization/RegisterBusiness';
 import { Login } from './Pages/Authorization/Login';
 import { Register } from './Pages/Authorization/Register';
 import {Map} from './Pages/Map';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const router = createBrowserRouter([
   {path:'/', element: <App /> ,},
