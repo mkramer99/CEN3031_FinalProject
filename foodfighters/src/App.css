@@ -56,3 +56,42 @@
     transform: rotate(360deg);
   }
 }
+
+/* map container */
+.leaflet-container {
+  margin:auto;
+  height: 800px;
+  width: 1000px;
+  /*
+  height: 100vh;
+  width: 100vw; */
+}
+
+/* Possible style for div marker
+.business-marker p {
+  display:inline-block;
+  padding: 0.5rem;
+  width: 100px;
+  border-radius: 3px;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+  background:#282c34;
+  transform:translate(-30%, -50%);
+}*/
+
+.business-popup {
+  height: 100px;
+}
+
+.business-popup .leaflet-popup-tip-container div {
+  background-color:#282c34;
+}
+.business-popup .leaflet-popup-content-wrapper {
+  color: aliceblue;
+  background-color: #282c34;
+  border-radius: 0px;
+}
+
+.business-popup div {
+  font-family:Arial, Helvetica, sans-serif;
+}
