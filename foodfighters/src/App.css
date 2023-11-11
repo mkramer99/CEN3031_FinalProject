@@ -57,16 +57,22 @@
   }
 }
 
+.Map-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(80px + 2vmin);
+  color: white;
+}
 /* map container */
 .leaflet-container {
   margin:auto;
-  height: 800px;
-  width: 1000px;
-  /*
-  height: 100vh;
-  width: 100vw; */
+  height: 80vh;
+  width: 70vw; 
 }
-
 /* Possible style for div marker
 .business-marker p {
   display:inline-block;
@@ -78,11 +84,9 @@
   background:#282c34;
   transform:translate(-30%, -50%);
 }*/
-
 .business-popup {
   height: 100px;
 }
-
 .business-popup .leaflet-popup-tip-container div {
   background-color:#282c34;
 }
@@ -90,8 +94,4 @@
   color: aliceblue;
   background-color: #282c34;
   border-radius: 0px;
-}
-
-.business-popup div {
-  font-family:Arial, Helvetica, sans-serif;
 }

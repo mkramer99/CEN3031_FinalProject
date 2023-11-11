@@ -33,7 +33,7 @@ const business = [
         position: [29.647310, -82.324760],
         name: "Free Grocery Store",
         address: "433 S Main St, Gainesville, FL 32601",
-        email: "A&C@Fakemail.com"
+        email: "A&C@fakemail.com"
     }
 ]
 
@@ -62,31 +62,35 @@ export function Map() {
     useEffect(() => { setBusinesses(business) }, [])
 
     return (
-        <MapContainer center={[29.6520, -82.3250] } zoom={13}>
-            <TileLayer
-                attribution="https://www.openstreetmap.org/copyright"
-                url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            {businesses && businesses.map(marker => (
-                <Marker 
-                    position={marker.position} 
-                    icon={businessIcon}
-                    eventHandlers={{
-                        // Example click event
-                        click: (e) => {
-                            console.log(`Click event for reference. You clicked ${marker.name}`, e)
-                        },
-                    }}
-                    >
-                    <Popup className="business-popup">
-                        <div className="content">
-                            <div>{marker.name}</div>
-                            <div>Address: {marker.address}</div>
-                            <div>Email: {marker.email}</div>
-                        </div>
-                        </Popup>
-                </Marker>
-            ))}
-        </MapContainer>
+        <div>
+            <header className="Map-header">
+                <MapContainer center={[29.6520, -82.3250] } zoom={13}>
+                    <TileLayer
+                        attribution="https://www.openstreetmap.org/copyright"
+                        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    {businesses && businesses.map(marker => (
+                        <Marker 
+                            position={marker.position} 
+                            icon={businessIcon}
+                            eventHandlers={{
+                                // Example click event
+                                click: (e) => {
+                                    console.log(`Click event for reference. You clicked ${marker.name}`, e)
+                                },
+                            }}
+                            >
+                            <Popup className="business-popup">
+                                <div className="content">
+                                    <div>{marker.name}</div>
+                                    <div>Address: {marker.address}</div>
+                                    <div>Email: {marker.email}</div>
+                                </div>
+                                </Popup>
+                        </Marker>
+                    ))}
+                </MapContainer>
+            </header>
+        </div>
     );
 }
