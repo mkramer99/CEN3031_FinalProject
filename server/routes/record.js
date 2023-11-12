@@ -12,17 +12,26 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
  
-// This section will help you get a list of all the records.
-// recordRoutes.route("/action/insertOne").get(function (req, res) {
-//  let db_connect = dbo.getDb("FoodFighters");
-//  db_connect
-//    .collection("Users")
-//    .find({})
-//    .toArray(function (err, result) {
-//      if (err) throw err;
-//      res.json(result);
-//    });
-// });
+// get all users
+recordRoutes.route("/Users/Get/All").get(function (req, res) {
+ let db_connect = dbo.getDb("FoodFighters");
+ console.log("Fetching users");
+ db_connect.collection("Users").find({}).toArray()
+ .then((data) => {
+    console.log(data);
+    res.json(data);
+  });
+});
+// get all businesses
+recordRoutes.route("/Businesses/Get/All").get(function (req, res) {
+  let db_connect = dbo.getDb("FoodFighters");
+  console.log("Fetching businesses");
+  db_connect.collection("Businesses").find({}).toArray()
+  .then((data) => {
+    console.log(data);
+    res.json(data);
+  });
+ });
  
 // // This section will help you get a single record by id
 // recordRoutes.route("/record/:id").get(function (req, res) {
@@ -45,13 +54,32 @@ recordRoutes.route("/Register").post(function (req, response) {
     email: req.body.email,
     password: req.body.password
   };
-  console.log("obj " + req.body.firstName);
   db_connect.collection("Users").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
+    console.log("registered user");
     });
     response.sendStatus(204);
+    return;
+});
 
+// New Business
+recordRoutes.route("/RegisterBusiness").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    name: req.body.name,
+    address: req.body.address,
+    lat: req.body.lat,
+    long: req.body.long,
+    email: req.body.email,
+    password: req.body.password
+  };
+  db_connect.collection("Businesses").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+    console.log("registered business");
+    });
+    response.sendStatus(204);
     return;
 });
  

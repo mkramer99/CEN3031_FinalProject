@@ -7,6 +7,7 @@ export function RegisterBusiness() {
         // if all fields filled and no duplicate email
         navigate('/Map')
     }
+
     return (
         <div>
             <header className="App-header">Register Business
