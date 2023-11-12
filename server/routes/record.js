@@ -1,16 +1,16 @@
+
+// https://www.mongodb.com/languages/mern-stack-tutorial
 const express = require("express");
- 
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /record.
+const app = express();
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 const recordRoutes = express.Router();
- 
-// This will help us connect to the database
+recordRoutes.use(express.json());
+recordRoutes.use(express.urlencoded({extended: true}));
 const dbo = require("../db/conn");
- 
-// This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
- 
+
  
 // This section will help you get a list of all the records.
 // recordRoutes.route("/action/insertOne").get(function (req, res) {
@@ -36,23 +36,23 @@ const ObjectId = require("mongodb").ObjectId;
 //    });
 // });
  
-// This section will help you create a new record.
+// New User
 recordRoutes.route("/Register").post(function (req, response) {
- console.log("hello");
- let db_connect = dbo.getDb();
- let myobj = {
-   firstName: req.body.firstName,
-   lastName: req.body.lastName,
-   email: req.body.email,
-   password: req.body.password
- };
- console.log("obj: " + req.body.firstName);
- db_connect.collection("Users").insertOne(myobj, function (err, res) {
-  console.log("yeee");
-   if (err) throw err;
-   response.json(res);
-   console.log(response);
- });
+  let db_connect = dbo.getDb();
+  let myobj = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    password: req.body.password
+  };
+  console.log("obj " + req.body.firstName);
+  db_connect.collection("Users").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+    });
+    response.sendStatus(204);
+
+    return;
 });
  
 // This section will help you update a record by id.
