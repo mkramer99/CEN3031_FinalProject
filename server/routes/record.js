@@ -69,10 +69,10 @@ recordRoutes.route("/RegisterBusiness").post(function (req, response) {
   let myobj = {
     name: req.body.name,
     address: req.body.address,
-    lat: req.body.lat,
-    long: req.body.long,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    lat: req.body.lat,
+    long: req.body.long
   };
   db_connect.collection("Businesses").insertOne(myobj, function (err, res) {
     if (err) throw err;
