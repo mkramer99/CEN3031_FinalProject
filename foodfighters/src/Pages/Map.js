@@ -1,7 +1,9 @@
-import "leaflet/dist/leaflet.css";
 import { React, useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import { Icon } from "leaflet";
+import { FullscreenControl } from "react-leaflet-fullscreen";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import "react-leaflet-fullscreen/styles.css";
 
 /* TODOs
 - Design markers (I'm not sure if I want the icon to be a generic icon or to be a div that always shows the information)
@@ -9,7 +11,6 @@ import { Icon } from "leaflet";
 - Design click behavior (If the marker is a generic icon, shows the information. If it already shows the information, clicking it should show more information)
 - Add geocoding search bar (was working on this, but there were some bugs with the existing packages)
 - Maybe add locate user button (map.locate() call)
-- Maybe add full screen button (toggles size using css style)
 - Possibly make marker size change with zoom level
 - Once everything is done, remove the examples
 */
@@ -37,6 +38,8 @@ const business = [
     }
 ]
 
+
+
 export function Map() {
     const [businesses, setBusinesses] = useState([
         { // business data template
@@ -53,14 +56,16 @@ export function Map() {
         html:  `<p>${marker.name}</p>`,
     })*/
 
-    const businessIcon = new Icon({
+    const businessIcon = new L.Icon({
         // Temporary icon - Will be removed later
-        iconUrl: require("../healthy-food.png"),
-        iconSize: [40,40]
+        iconUrl: require("../TestIcon.png"),
+        iconSize: [50,50],
+        iconAnchor: [25,40]
     })
 
     useEffect(() => { setBusinesses(business) }, [])
-
+    
+                
     return (
         <div>
             <header className="Map-header">
@@ -69,6 +74,7 @@ export function Map() {
                         attribution="https://www.openstreetmap.org/copyright"
                         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
+                    <FullscreenControl position='topleft' forceSeparateButton='true' />
                     {businesses && businesses.map(marker => (
                         <Marker 
                             position={marker.position} 
@@ -78,15 +84,20 @@ export function Map() {
                                 click: (e) => {
                                     console.log(`Click event for reference. You clicked ${marker.name}`, e)
                                 },
-                            }}
-                            >
-                            <Popup className="business-popup">
-                                <div className="content">
-                                    <div>{marker.name}</div>
-                                    <div>Address: {marker.address}</div>
-                                    <div>Email: {marker.email}</div>
-                                </div>
+                            }}>
+                            {
+                                <Popup className="business-popup">
+                                    <div className="content">
+                                        <h2 className='business-name'><b>{marker.name}</b></h2>
+                                        <p className='business-contact'>
+                                            <b>Contact Information</b><br/>
+                                            Address: {marker.address}<br/>
+                                            Email: {marker.email}<br/>
+                                            Phone: 1-111-111-1111
+                                        </p>
+                                    </div>
                                 </Popup>
+                            }
                         </Marker>
                     ))}
                 </MapContainer>
