@@ -46,11 +46,11 @@ export function Login() {
                 <form className="Form" onSubmit={handleSubmit}>
                     <label>
                         Email: 
-                        <input type="text" id="email" name="email" value={formData.email} onChange={handleChange}></input>
+                        <input type="text" id="email" name="email" placeholder="youremail@gmail.com" value={formData.email} onChange={handleChange}></input>
                     </label>
                     <label>
                         Password:
-                        <input type="text" id="password" name="password" value={formData.password} onChange={handleChange}></input>
+                        <input type="text" id="password" name="password" placeholder="********" value={formData.password} onChange={handleChange}></input>
                     </label>
                     <button type="submit">Submit</button>
                 </form>
