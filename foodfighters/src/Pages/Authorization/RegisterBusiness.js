@@ -1,5 +1,6 @@
 import { React, useState }from 'react';
 import { useNavigate } from 'react-router-dom';
+import user from './User';
 
 export function RegisterBusiness() {
     const [formData, setFormData] = useState({name: "", address: "", email: "", password: "", confirmPassword: "", lat: "", long: ""})
@@ -20,7 +21,8 @@ export function RegisterBusiness() {
         .catch(error => {
             console.log(error);
             return;
-        }).then(() => navigate('/Map'));
+        }).then(() => user.name = formData.name).then(navigate('/Map'));
+        //navigate('/Map');
     }
 
     const handleChange = (event) => {
@@ -53,6 +55,7 @@ export function RegisterBusiness() {
             </label>
             <button type="submit">Submit</button>
         </form>
+        
         </header>
     </div>
     )
