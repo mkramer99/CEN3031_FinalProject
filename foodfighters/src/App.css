@@ -1,58 +1,97 @@
-.App {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Andale Mono', monospace;
+}
+
+.navigation {
+  background: #151146;
+  height: 100 px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  height: 100px;
+  z-index: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+#nav_logo {
+  background-image: linear-gradient(to top, #456FD9, #E3E4DB, #456FD9);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.nav_menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.nav_item {
+  height: 70px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav_links {
+  color: #ffffff;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
-}
-.Form-Header {
-  background-color: #282c34;
-  padding-top: 4em;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(8px + 2vmin);
-  color: white;
-}
-.Form {
-  background-color: #282c34;
-  padding-top: 2em;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: calc(8px + 2vmin);
-  color: white;
+.nav_links:hover {
+  color: #456FD9;
+  transition: all 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main {
+  background-color: #E3E4DB;
 }
+
+.main_container {
+  display: grid;
+  align-items: center;
+  justify-self: center;
+  text-align: center;
+  margin: 0 auto;
+  height: 90vh;
+  background-color: #E3E4DB;
+  z-index: 1;
+  width: 100%;
+  padding: 0;
+}
+
+.main_content h1 {
+  font-size: 2.8rem;
+  color:#151146
+}
+
+.main_content p {
+  font-size: 1.3rem;
+  padding-top: 40px;
+}
+
