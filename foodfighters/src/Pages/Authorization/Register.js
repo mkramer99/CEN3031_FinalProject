@@ -1,20 +1,33 @@
 import { React, useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 export function Register() {
     const [formData, setFormData] = useState({firstName: "", lastName: "", email: "", password: "", confirmPassword: ""})
     const navigate = useNavigate();
-    const handleSubmit = (event) => {
+    async function handleSubmit(event) {
         event.preventDefault();
-        // if all fields filled and no duplicate email
-        navigate('/Map')
+        const newUser = { ...formData };
+        console.log(newUser);
+        let response = await fetch("http://localhost:8080/Register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "apiKey": "Fm2nkgiEpuyPBjKQtwjhKbOKbHvH74vZPZIi0qH53W2rPp4odS2GLTCt96AcoPcn",
+                "Access-Control-Request-Headers": "*"
+            },
+            body: JSON.stringify(newUser),
+        })
+        .catch(error => {
+            console.log(error);
+            return;
+        }).then(() => navigate('/Map'));
     }
+
     const handleChange = (event) => {
-        console.log("change");
         const {name, value } = event.target;
         setFormData((prevFormData) => ({...prevFormData, [name]: value }));
     }
+
     function form() {
         return (
             <div>
