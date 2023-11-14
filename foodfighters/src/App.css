@@ -93,10 +93,6 @@
   background: rgba(0, 0, 0, 0);
   box-shadow: none;
 }
-.leaflet-popup-content-wrapper {
-  padding:unset;
-  transform:translateY(5%);
-}
 
 .business-name {
   margin-bottom: 0px;
@@ -112,10 +108,11 @@
   animation: popup-animate 0.5s alternate;
   animation-fill-mode: both;  
   background-color: #282c34;
-  background: rgba(64,174,59,255);
+  background: #275ff5;
   height: 0px;
   border-radius: 50%px;
   box-shadow: none;
+  transform:translateY(4%) !important;
 }
 
 .business-popup .content * {

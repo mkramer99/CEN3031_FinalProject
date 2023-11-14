@@ -94,7 +94,7 @@ export function Map() {
 
     const businessIcon = new L.Icon({
         // Temporary icon - Will be removed later
-        iconUrl: require("../TestIcon.png"),
+        iconUrl: require("../MarkerIconBlueO.png"),
         iconSize: [50,50],
         iconAnchor: [25,40]
     })
