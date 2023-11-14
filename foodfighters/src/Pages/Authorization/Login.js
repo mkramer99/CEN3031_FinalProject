@@ -1,5 +1,7 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 export function Login() {
     const [formData, setFormData] = useState({email: "", password: ""})
@@ -9,6 +11,7 @@ export function Login() {
         async function fetchAccount() {
             const newUser = { ...formData };
             console.log(newUser);
+            console.log("Fetching user");
             let response = await fetch("http://localhost:8080/Users/Get/One", {
                 method: "POST",
                 headers: {
@@ -20,7 +23,11 @@ export function Login() {
             });
             const record = await response.json();
             if (record != null) {
+                console.log(record);
                 console.log("FOUND!");
+                navigate('/Map');
+            } else {
+                console.log("invalid login");
             }
         }
         fetchAccount();

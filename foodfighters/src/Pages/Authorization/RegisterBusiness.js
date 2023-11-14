@@ -9,20 +9,43 @@ export function RegisterBusiness() {
         event.preventDefault();
         const newUser = { ...formData };
         console.log(newUser);
-        let response = await fetch("http://localhost:8080/RegisterBusiness", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "apiKey": "Fm2nkgiEpuyPBjKQtwjhKbOKbHvH74vZPZIi0qH53W2rPp4odS2GLTCt96AcoPcn",
-                "Access-Control-Request-Headers": "*"
-            },
-            body: JSON.stringify(newUser),
-        })
-        .catch(error => {
-            console.log(error);
-            return;
-        }).then(() => user.name = formData.name).then(navigate('/Map'));
-        //navigate('/Map');
+
+        // check for existing account
+        async function fetchAccount() {
+            const newUser = { ...formData };
+            console.log(newUser);
+            console.log("Fetching user");
+            let response = await fetch("http://localhost:8080/Businesses/Get/One", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "apiKey": "Fm2nkgiEpuyPBjKQtwjhKbOKbHvH74vZPZIi0qH53W2rPp4odS2GLTCt96AcoPcn",
+                    "Access-Control-Request-Headers": "*"
+                },
+                body: JSON.stringify(newUser),
+            });
+            const record = await response.json();
+            if (record != null) {
+                console.log(record);
+                console.log("ACCOUNT ALREADY EXISTS!");
+            } else {
+                // if no existing account, create new one
+                let response = await fetch("http://localhost:8080/RegisterBusiness", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apiKey": "Fm2nkgiEpuyPBjKQtwjhKbOKbHvH74vZPZIi0qH53W2rPp4odS2GLTCt96AcoPcn",
+                        "Access-Control-Request-Headers": "*"
+                    },
+                    body: JSON.stringify(newUser),
+                })
+                .catch(error => {
+                    console.log(error);
+                    return;
+                }).then(() => navigate('/Map'));
+            }
+        }
+        fetchAccount();
     }
 
     const handleChange = (event) => {

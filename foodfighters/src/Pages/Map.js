@@ -60,12 +60,11 @@ export function Map() {
         return;
     }, [records.length]);
 
-    // maps out the businesses to Record objects
+// maps out the businesses to Record objects
     function businessList() {
         return records.map((record) => {
             return (
                 <div>
-                <p>{record.name}</p>
                 <Record
                 record = {record}
                 key={record._id}
@@ -131,7 +130,7 @@ export function Map() {
                     ))}
                 </MapContainer>
             </header>
-            {businessList()}
+{businessList()}
         </div>
     );
 }

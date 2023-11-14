@@ -37,8 +37,12 @@ recordRoutes.route("/Businesses/Get/All").get(function (req, res) {
 // Get one account
 recordRoutes.route("/Users/Get/One").post(function (req, res) {
  let db_connect = dbo.getDb();
+ let myobj = {
+  email: req.body.email,
+  password: req.body.password
+};
  console.log("Getting user account");
- db_connect.collection("Users").findOne({email: req.params.email})
+ db_connect.collection("Users").findOne(myobj)
  .then((data) => {
     console.log(data);
     res.json(data);
@@ -93,6 +97,28 @@ recordRoutes.route("/RegisterBusiness").post(function (req, response) {
     response.sendStatus(204);
     return;
 });
+
+// delete user
+recordRoutes.route("/Users/Delete/One").post(function (req, res) {
+  let db_connect = dbo.getDb();
+  console.log("Deleting user account");
+  db_connect.collection("Users").findOne({email: req.params.email})
+  .then((data) => {
+     console.log(data);
+     res.json(data);
+   });
+ });
+
+ // delete business
+ recordRoutes.route("/Businesses/Delete/One").post(function (req, res) {
+  let db_connect = dbo.getDb();
+  console.log("Deleting business account");
+  db_connect.collection("Businesses").findOne({email: req.params.email})
+  .then((data) => {
+     console.log(data);
+     res.json(data);
+   });
+ });
  
 // This section will help you update a record by id.
 // recordRoutes.route("/update/:id").post(function (req, response) {
