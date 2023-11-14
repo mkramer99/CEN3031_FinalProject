@@ -11,6 +11,7 @@ function HomePage() {
                     <button onClick={() => navigate('/Login')}>Login</button>
                     <button onClick={() => navigate('/RegisterBusiness')}>Register A Business</button>
                     <button onClick={() => navigate('/Register')}>Register A User</button>
+                    <button onClick={() => navigate('/Map')}>Map</button>
                 </div>
             </header>
         </div>
