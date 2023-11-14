@@ -1,4 +1,4 @@
-import { React, { useEffect, useState }, useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { FullscreenControl } from "react-leaflet-fullscreen";
 import L from "leaflet";
@@ -39,8 +39,6 @@ const business = [
 ]
 
 
-
-
 // prints record objects to page for debugging
 const Record = (props) => (
     <tr>
@@ -76,8 +74,9 @@ export function Map() {
             )
         })
     }
-    const businessMap = businessList();
 
+
+    // Placeholder business data
     const [businesses, setBusinesses] = useState([
         { // business data template
             position: [0,0],
@@ -100,8 +99,7 @@ export function Map() {
         iconAnchor: [25,40]
     })
 
-    useEffect(() => { setBusinesses(business) }, [])
-    
+    useEffect(() => { setBusinesses(business)}, [])
                 
     return (
         <div>
@@ -115,13 +113,7 @@ export function Map() {
                     {businesses && businesses.map(marker => (
                         <Marker 
                             position={marker.position} 
-                            icon={businessIcon}
-                            eventHandlers={{
-                                // Example click event
-                                click: (e) => {
-                                    console.log(`Click event for reference. You clicked ${marker.name}`, e)
-                                },
-                            }}>
+                            icon={businessIcon}>
                             {
                                 <Popup className="business-popup">
                                     <div className="content">
