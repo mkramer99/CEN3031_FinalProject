@@ -198,3 +198,92 @@
       border-radius: 10px;
       }
   }
+
+  .logbut:hover {
+    background-color:#456FD9;
+    animation: bubble 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  @keyframes bubble {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .toppop {
+    margin: 30px 0 15px 0;
+    position: relative;
+    border-radius: 8px;
+  }
+
+  .popcontainer {
+    padding: 15px;
+    font-size: 1.6rem;
+  }
+
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #ffffff;
+    background-color: rgba(0,0,0,0.5);
+    padding-top: 140px;
+  }
+
+  .popup-content {
+    background-color: #ffffff;
+    margin: 5% auto 15% auto;
+    width: 30%;
+    border-radius: 10px;
+  }
+
+  .closepop {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .closepop:hover {
+    color: #ff0000;
+    cursor: pointer;
+  }
+
+  .submitbut {
+    border-radius: 6px;
+  }
+
+  .submitbut:hover {
+    background-color:#456FD9;
+    animation: bubble 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .animation {
+    -webkit-animation: animatezoom 0.5s;
+    animation: animatezoom 0.5s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }

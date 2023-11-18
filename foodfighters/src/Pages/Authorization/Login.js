@@ -50,7 +50,7 @@ export function Login() {
                     </label>
                     <label>
                         Password:
-                        <input type="text" id="password" name="password" placeholder="********" value={formData.password} onChange={handleChange}></input>
+                        <input type="password" id="password" name="password" placeholder="********" value={formData.password} onChange={handleChange}></input>
                     </label>
                     <button type="submit">Submit</button>
                 </form>
