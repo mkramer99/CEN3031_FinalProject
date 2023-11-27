@@ -39,7 +39,7 @@
 }
 .Form {
   background-color: #282c34;
-  padding-top: 2em;
+  padding-top: 1em;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -47,7 +47,41 @@
   font-size: calc(8px + 2vmin);
   color: white;
 }
+input {
+  margin: 5px 5px;
+}
 
+.Form-Content {
+  margin: 30px auto;
+  width: 400px;
+}
+#name {
+  width: 95%;
+}
+#street {
+  width: 65%;
+}
+#city {
+  width: 25%;
+}
+#country {
+  width: 50%;
+}
+#state {
+  width: 16%;
+}
+#zip {
+  width: 20%;
+}
+#email {
+  width: 95%;
+}
+#password {
+  width: 95%;
+}
+#confirmPassword {
+  width: 95%;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
