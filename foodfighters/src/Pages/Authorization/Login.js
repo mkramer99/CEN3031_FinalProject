@@ -28,6 +28,7 @@ export function Login() {
                 navigate('/Map');
             } else {
                 console.log("invalid login");
+                // TODO: implement popup or page text to display error
             }
         }
         fetchAccount();
