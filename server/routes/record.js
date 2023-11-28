@@ -83,11 +83,11 @@ recordRoutes.route("/RegisterBusiness").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
-    address: req.body.address,
+    address: `${req.body.street}, ${req.body.city}, ${req.body.state} ${req.body.zip}, ${req.body.country}`,
     email: req.body.email,
     password: req.body.password,
     lat: req.body.lat,
-    long: req.body.long
+    lon: req.body.lon
   };
   db_connect.collection("Businesses").insertOne(myobj, function (err, res) {
     if (err) throw err;
