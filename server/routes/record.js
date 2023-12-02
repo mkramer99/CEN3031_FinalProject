@@ -2,6 +2,7 @@
 // https://www.mongodb.com/languages/mern-stack-tutorial
 const express = require("express");
 const app = express();
+app.disable("x-powered-by");
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
