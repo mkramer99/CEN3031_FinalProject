@@ -5,6 +5,7 @@ import 'reactjs-popup/dist/index.css';
 
 export function Login() {
     const [formData, setFormData] = useState({email: "", password: ""})
+    const [showPopup, setShowPopup] = useState(false); 
     const navigate = useNavigate();
     async function handleSubmit(event) {
         event.preventDefault();
@@ -28,7 +29,7 @@ export function Login() {
                 navigate('/Map');
             } else {
                 console.log("invalid login");
-                // TODO: implement popup or page text to display error
+                setShowPopup(true);
             }
         }
         fetchAccount();
@@ -51,11 +52,18 @@ export function Login() {
                     </label>
                     <label>
                         Password:
-                        <input type="text" id="password" name="password" placeholder="********" value={formData.password} onChange={handleChange}></input>
+                        <input type="password" id="password" name="password" placeholder="********" value={formData.password} onChange={handleChange}></input>
                     </label>
                     <button type="submit">Submit</button>
                 </form>
                 </header>
+                <Popup open={showPopup} onClose={() => setShowPopup(false)}
+                contentStyle={{width: '300px'}}>
+                    <div>
+                        <p>Your Email or Password is incorrect. Please try again.</p>
+                        <button onClick={() => setShowPopup(false)}>Close</button>
+                    </div>
+                </Popup>
             </div>
         )
     }
