@@ -15,36 +15,15 @@ import "react-leaflet-fullscreen/styles.css";
 - Once everything is done, remove the examples
 */
 
-// Temporary example business data
-// Position coordinates should be capture and stored with the business using something like https://geocode.maps.co/
-const business = [
-    {
-        position: [29.6609563, -82.3285205],
-        name: "Bread of the Mighty Food Bank",
-        address: "325 NW 10th Ave, Gainesville, FL 32601",
-        email: "MightyBread@fakemail.com"
-    },
-    {
-        position: [29.643946, -82.355659],
-        name: "University of Florida",
-        address: "1225 Center Dr, Gainesville, FL 32610",
-        email: "UF@fakemail.com"
-    },
-    {
-        position: [29.647310, -82.324760],
-        name: "Free Grocery Store",
-        address: "433 S Main St, Gainesville, FL 32601",
-        email: "A&C@fakemail.com"
-    }
-]
-
 
 // prints record objects to page for debugging
 const Record = (props) => (
-    <tr>
-      <td>{props.record.name}</td>
-      <td>{props.record.address}</td>
-    </tr>
+    <trbody>
+        <tr>
+        <td>{props.record.name}</td>
+        <td>{props.record.address}</td>
+        </tr>
+    </trbody>
    );
 
 export function Map() {
@@ -55,6 +34,7 @@ export function Map() {
             const response = await fetch("http://localhost:8080/Businesses/Get/All");
             const records = await response.json();
             setRecords(records);
+            console.log(records);
         }
         getBusinesses();
         return;
@@ -74,17 +54,6 @@ export function Map() {
         })
     }
 
-
-    // Placeholder business data
-    const [businesses, setBusinesses] = useState([
-        { // business data template
-            position: [0,0],
-            name: "",
-            address: "",
-            email: ""
-        }
-    ]);
-
     /* divIcons use <div>s instead of image files
     const businessDivIcon = new divIcon({
         className: 'business-marker',
@@ -93,12 +62,10 @@ export function Map() {
 
     const businessIcon = new L.Icon({
         // Temporary icon - Will be removed later
-        iconUrl: require("../TestIcon.png"),
+        iconUrl: require("../MarkerIconBlueO.png"),
         iconSize: [50,50],
         iconAnchor: [25,40]
     })
-
-    useEffect(() => { setBusinesses(business)}, [])
                 
     return (
         <div>
@@ -109,9 +76,9 @@ export function Map() {
                         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <FullscreenControl position='topleft' forceSeparateButton='true' />
-                    {businesses && businesses.map(marker => (
+                    {records && records.map(marker => (
                         <Marker 
-                            position={marker.position} 
+                            position={[marker.lat, marker.lon]} 
                             icon={businessIcon}>
                             {
                                 <Popup className="business-popup">
