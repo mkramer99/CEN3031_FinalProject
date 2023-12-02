@@ -75,7 +75,6 @@ recordRoutes.route("/Register").post(function (req, response) {
     console.log("registered user");
     });
     response.sendStatus(204);
-    return;
 });
 
 // New Business
@@ -95,7 +94,6 @@ recordRoutes.route("/RegisterBusiness").post(function (req, response) {
     console.log("registered business");
     });
     response.sendStatus(204);
-    return;
 });
 
 // delete user
