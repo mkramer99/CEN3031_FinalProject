@@ -33,6 +33,16 @@ recordRoutes.route("/Businesses/Get/All").get(function (req, res) {
   });
  });
  
+ // get all businesses without passwords
+ recordRoutes.route("/Businesses/Get/AllLocations").get(function (req, res) {
+  let db_connect = dbo.getDb("FoodFighters");
+  console.log("Fetching businesses");
+  db_connect.collection("Businesses").find({}).project({password:0}).toArray()
+  .then((data) => {
+    console.log(data);
+    res.json(data);
+  });
+ });
 
 // Get one account
 recordRoutes.route("/Users/Get/One").post(function (req, res) {
