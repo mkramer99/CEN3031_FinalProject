@@ -27,6 +27,7 @@ export function Register() {
             if (record != null) {
                 console.log(record);
                 console.log("ACCOUNT ALREADY EXISTS!");
+                // TODO: implement popup or page text to display error
             } else {
                 // if no existing account, create new one
                 let response = await fetch("http://localhost:8080/Register", {

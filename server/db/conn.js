@@ -1,7 +1,6 @@
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const Db = process.env.ATLAS_URI;
-//const client = new MongoClient("mongodb+srv://melaniekramer:cen3031@team18cluster.qowtrfz.mongodb.net/?retryWrites=true&w=majority");
 
 var _db;
 var url = "mongodb+srv://melaniekramer:cen3031@team18cluster.qowtrfz.mongodb.net/?retryWrites=true&w=majority";
