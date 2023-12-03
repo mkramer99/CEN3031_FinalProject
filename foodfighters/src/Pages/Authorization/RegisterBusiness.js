@@ -8,9 +8,11 @@ export function RegisterBusiness() {
 
     const geoCodeFormData = async () => {
         let formattedAddress = {street: formData.street, city: formData.city, country: formData.country, state: formData.state, zip: formData.zip};
+        // formats address for query
         for (const [key,value] of Object.entries(formattedAddress)) {
             formattedAddress[key] = value.replaceAll(/\s+/g,'+');
         };
+        // Calls free geocoding api
         let geoCodeQuery = `https://geocode.maps.co/search?street=${formattedAddress["street"]}&city=${formattedAddress["city"]}&state=${formattedAddress["state"]}&postalcode=${formattedAddress["zip"]}&country=${formattedAddress["country"]}`;
         const res = await fetch(geoCodeQuery);
         const data = await res.json();     
@@ -21,12 +23,9 @@ export function RegisterBusiness() {
         event.preventDefault(); 
         const data = await geoCodeFormData();
         const newUser = { ...formData, lon: data[0].lon, lat:data[0].lat};
-        console.log(newUser);
-
         // check for existing account
-        async function fetchAccount() {
-            const newUser = { ...formData };
-            console.log(newUser);
+        async function fetchAccount(User) {
+            const newUser = User;
             console.log("Fetching user");
             let response = await fetch("http://localhost:8080/Businesses/Get/One", {
                 method: "POST",
@@ -58,7 +57,7 @@ export function RegisterBusiness() {
                 }).then(() => navigate('/Map'));
             }
         }
-        fetchAccount();
+        fetchAccount(newUser);
     }
 
     const handleChange = (event) => {
