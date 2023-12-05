@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>FOOD FIGHTERS</title>
-    <link rel="style" href="App.css" />
+    <link rel="stylesheet" href="pages.css" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -64,10 +64,37 @@
     <div class="main">
       <div class="main_container">
         <div class="main_content">
-          <h1>Welcome to The Food Fighters' Donation Connector!</h1>
-          <p>We aim to increase availability of food and personal items to individuals in need.</p>
+          <h1>Hello, User!</h1>
+          <p>Please Log In<br><br>If you do not have an account, please create a business or standard account.<br><br></p>
+          <button onclick="document.getElementById('logpop').style.display='block'" class="logbut">Login</button>
+          <div id="logpop" class="popup">
+            <form class="popup-content animation" action="tobefilled" method="post">
+              <div class="toppop">
+                <span onclick="document.getElementById('logpop').style.display='none'" class="closepop" title="Close">&times;</span>
+              </div>
+              <div class="popcontainer">
+                <label for="email"><b><br><br>Email</b></label>
+                <input type="text" placeholder="youremail@gmail.com" name="email" required>
+                <label for="password"><b><br><br>Password</b></label>
+                <input type="password" placeholder="********" name="password" required>
+                <label><br><br></label>
+                <button type="submit" class="submitbut">Submit</button>
+                <label><br><br></label>
+              </div>
+            </form>
+          </div>
+          <script>
+            var popup = document.getElementById('logpop');
+            window.onclick = function(event) {
+              if (event.target == popup) {
+                popup.style.display = "none";
+              }
+            }
+          </script>
         </div>
       </div>
     </div>
+  
+    </form>
   </body>
 </html>
