@@ -7,24 +7,20 @@ import "react-leaflet-fullscreen/styles.css";
 import user from './Authorization/User';
 
 /* TODOs
-- Design markers (I'm not sure if I want the icon to be a generic icon or to be a div that always shows the information)
-- Also food banks should be visually distinct from food pantries 
-- Design click behavior (If the marker is a generic icon, shows the information. If it already shows the information, clicking it should show more information)
-- Add geocoding search bar (was working on this, but there were some bugs with the existing packages)
 - Maybe add locate user button (map.locate() call)
 - Possibly make marker size change with zoom level
-- Once everything is done, remove the examples
 */
-
 
 // prints record objects to page for debugging
 const Record = (props) => (
-    <trbody>
-        <tr>
-        <td>{props.record.name}</td>
-        <td>{props.record.address}</td>
-        </tr>
-    </trbody>
+    <table>
+        <tbody>
+            <tr>
+                <td>{props.record.name}</td>
+                <td>{props.record.address}</td>
+            </tr>
+        </tbody>
+    </table>
    );
 
 export function Map() {
@@ -32,7 +28,7 @@ export function Map() {
     useEffect(() => { 
         async function getBusinesses() {
             console.log("Getting business records");
-            const response = await fetch("http://localhost:8080/Businesses/Get/All");
+            const response = await fetch("http://localhost:8080/Businesses/Get/AllLocations");
             const records = await response.json();
             setRecords(records);
             console.log(records);
@@ -62,7 +58,6 @@ export function Map() {
     })*/
 
     const businessIcon = new L.Icon({
-        // Temporary icon - Will be removed later
         iconUrl: require("../MarkerIconBlueO.png"),
         iconSize: [50,50],
         iconAnchor: [25,40]
@@ -72,12 +67,15 @@ export function Map() {
         <div>
             <header className="Map-header">
                 Hello, {user.name}
+                {/* Map's default location in map is Gainesville */}
                 <MapContainer center={[29.6520, -82.3250] } zoom={13}>
                     <TileLayer
                         attribution="https://www.openstreetmap.org/copyright"
                         url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
                     <FullscreenControl position='topleft' forceSeparateButton='true' />
+
+                    {/* when records are updated, create marker for each record located at stored coordinates */}
                     {records && records.map(marker => (
                         <Marker 
                             position={[marker.lat, marker.lon]} 
@@ -88,9 +86,8 @@ export function Map() {
                                         <h2 className='business-name'><b>{marker.name}</b></h2>
                                         <p className='business-contact'>
                                             <b>Contact Information</b><br/>
-                                            Address: {marker.address}<br/>
+                                            Address: {marker.address.substring(0, marker.address.lastIndexOf(","))}<br/>
                                             Email: {marker.email}<br/>
-                                            Phone: 1-111-111-1111
                                         </p>
                                     </div>
                                 </Popup>
@@ -99,7 +96,7 @@ export function Map() {
                     ))}
                 </MapContainer>
             </header>
-{businessList()}
+            {businessList()}
         </div>
     );
 }

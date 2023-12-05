@@ -6,7 +6,6 @@ function HomePage() {
     return (
         <div>
             <header className="Form-Header">
-                Food Fighters
                 <div className='Form'>
                     <button onClick={() => navigate('/Login')}>Login</button>
                     <button onClick={() => navigate('/RegisterBusiness')}>Register A Business</button>
