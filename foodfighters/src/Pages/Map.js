@@ -4,6 +4,7 @@ import { FullscreenControl } from "react-leaflet-fullscreen";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-fullscreen/styles.css";
+import user from './Authorization/User';
 
 /* TODOs
 - Design markers (I'm not sure if I want the icon to be a generic icon or to be a div that always shows the information)
@@ -70,6 +71,7 @@ export function Map() {
     return (
         <div>
             <header className="Map-header">
+                Hello, {user.name}
                 <MapContainer center={[29.6520, -82.3250] } zoom={13}>
                     <TileLayer
                         attribution="https://www.openstreetmap.org/copyright"
