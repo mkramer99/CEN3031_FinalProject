@@ -4,6 +4,7 @@ import { FullscreenControl } from "react-leaflet-fullscreen";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-fullscreen/styles.css";
+import user from './Authorization/User';
 
 /* TODOs
 - Maybe add locate user button (map.locate() call)
@@ -65,6 +66,7 @@ export function Map() {
     return (
         <div>
             <header className="Map-header">
+                Hello, {user.name}
                 {/* Map's default location in map is Gainesville */}
                 <MapContainer center={[29.6520, -82.3250] } zoom={13}>
                     <TileLayer

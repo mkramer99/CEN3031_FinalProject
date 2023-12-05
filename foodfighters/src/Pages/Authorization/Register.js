@@ -1,8 +1,12 @@
 import { React, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import user
+ from './User';
 export function Register() {
     const [formData, setFormData] = useState({firstName: "", lastName: "", email: "", password: "", confirmPassword: ""})
+    const [showPopup, setShowPopup] = useState(false); 
     const navigate = useNavigate();
     async function handleSubmit(event) {
         event.preventDefault();
@@ -27,8 +31,10 @@ export function Register() {
             if (record != null) {
                 console.log(record);
                 console.log("ACCOUNT ALREADY EXISTS!");
-                // TODO: implement popup or page text to display error
+                // popup to display error
+                setShowPopup(true);
             } else {
+                user.name = formData.firstName;
                 // if no existing account, create new one
                 let response = await fetch("http://localhost:8080/Register", {
                     method: "POST",
@@ -81,6 +87,13 @@ export function Register() {
                     <button type="submit">Submit</button>
                 </form>
                 </header>
+                <Popup open={showPopup} onClose={() => setShowPopup(false)}
+                contentStyle={{width: '300px'}}>
+                    <div>
+                        <p>An account with this email already exists.</p>
+                        <button onClick={() => setShowPopup(false)}>Close</button>
+                    </div>
+                </Popup>
             </div>
         )
     }
