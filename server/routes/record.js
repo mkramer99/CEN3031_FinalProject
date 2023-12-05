@@ -2,6 +2,7 @@
 // https://www.mongodb.com/languages/mern-stack-tutorial
 const express = require("express");
 const app = express();
+app.disable("x-powered-by");
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
@@ -33,6 +34,16 @@ recordRoutes.route("/Businesses/Get/All").get(function (req, res) {
   });
  });
  
+ // get all businesses without passwords
+ recordRoutes.route("/Businesses/Get/AllLocations").get(function (req, res) {
+  let db_connect = dbo.getDb("FoodFighters");
+  console.log("Fetching businesses");
+  db_connect.collection("Businesses").find({}).project({password:0}).toArray()
+  .then((data) => {
+    console.log(data);
+    res.json(data);
+  });
+ });
 
 // Get one account
 recordRoutes.route("/Users/Get/One").post(function (req, res) {
@@ -75,7 +86,6 @@ recordRoutes.route("/Register").post(function (req, response) {
     console.log("registered user");
     });
     response.sendStatus(204);
-    return;
 });
 
 // New Business
@@ -83,11 +93,11 @@ recordRoutes.route("/RegisterBusiness").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
-    address: req.body.address,
+    address: `${req.body.street}, ${req.body.city}, ${req.body.state} ${req.body.zip}, ${req.body.country}`,
     email: req.body.email,
     password: req.body.password,
     lat: req.body.lat,
-    long: req.body.long
+    lon: req.body.lon
   };
   db_connect.collection("Businesses").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -95,7 +105,6 @@ recordRoutes.route("/RegisterBusiness").post(function (req, response) {
     console.log("registered business");
     });
     response.sendStatus(204);
-    return;
 });
 
 // delete user
@@ -119,36 +128,5 @@ recordRoutes.route("/Users/Delete/One").post(function (req, res) {
      res.json(data);
    });
  });
- 
-// This section will help you update a record by id.
-// recordRoutes.route("/update/:id").post(function (req, response) {
-//  let db_connect = dbo.getDb();
-//  let myquery = { _id: ObjectId(req.params.id) };
-//  let newvalues = {
-//    $set: {
-//      name: req.body.name,
-//      position: req.body.position,
-//      level: req.body.level,
-//    },
-//  };
-//  db_connect
-//    .collection("records")
-//    .updateOne(myquery, newvalues, function (err, res) {
-//      if (err) throw err;
-//      console.log("1 document updated");
-//      response.json(res);
-//    });
-// });
- 
-// // This section will help you delete a record
-// recordRoutes.route("/:id").delete((req, response) => {
-//  let db_connect = dbo.getDb();
-//  let myquery = { _id: ObjectId(req.params.id) };
-//  db_connect.collection("records").deleteOne(myquery, function (err, obj) {
-//    if (err) throw err;
-//    console.log("1 document deleted");
-//    response.json(obj);
-//  });
-// });
  
 module.exports = recordRoutes;

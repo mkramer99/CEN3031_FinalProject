@@ -44,16 +44,13 @@
 .nav_menu {
   display: flex;
   align-items: center;
-  list-style: none;
-  text-align: center;
+  font-size: calc(8px + 2vmin);
+  color: white;
 }
-
-.nav_item {
-  height: 70px;
-}
-
-.nav_links {
-  color: #ffffff;
+.Form {
+  background-color: #282c34;
+  padding-top: 1em;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,34 +63,49 @@
   color: #456FD9;
   transition: all 0.2s ease;
 }
-
-.main {
-  background-color: #E3E4DB;
+input {
+  margin: 5px 5px;
 }
 
-.main_container {
-  display: grid;
-  align-items: center;
-  justify-self: center;
-  text-align: center;
-  margin: 0 auto;
-  height: 90vh;
-  background-color: #E3E4DB;
-  z-index: 1;
-  width: 100%;
-  padding: 0;
+.Form-Content {
+  margin: 30px auto;
+  width: 400px;
 }
-
-.main_content h1 {
-  font-size: 2.8rem;
-  color:#151146
+#name {
+  width: 95%;
 }
-
-.main_content p {
-  font-size: 1.3rem;
-  padding-top: 40px;
+#street {
+  width: 65%;
 }
-
+#city {
+  width: 25%;
+}
+#country {
+  width: 50%;
+}
+#state {
+  width: 16%;
+}
+#zip {
+  width: 20%;
+}
+#email {
+  width: 95%;
+}
+#password {
+  width: 95%;
+}
+#confirmPassword {
+  width: 95%;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 .Map-header {
   background-color: #282c34;
@@ -131,10 +143,6 @@
   background: rgba(0, 0, 0, 0);
   box-shadow: none;
 }
-.leaflet-popup-content-wrapper {
-  padding:unset;
-  transform:translateY(5%);
-}
 
 .business-name {
   margin-bottom: 0px;
@@ -150,10 +158,11 @@
   animation: popup-animate 0.5s alternate;
   animation-fill-mode: both;  
   background-color: #282c34;
-  background: rgba(64,174,59,255);
+  background: #275ff5;
   height: 0px;
   border-radius: 50%px;
   box-shadow: none;
+  transform:translateY(4%) !important;
 }
 
 .business-popup .content * {
