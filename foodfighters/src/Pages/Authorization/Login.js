@@ -4,7 +4,6 @@ import Popup from 'reactjs-popup';
 import user from './User';
 import 'reactjs-popup/dist/index.css';
 import NavBar from '../../Navbar';
-import user from './User';
 
 export function Login() {
     const [formData, setFormData] = useState({email: "", password: ""})
