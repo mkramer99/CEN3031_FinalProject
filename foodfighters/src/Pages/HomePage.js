@@ -1,18 +1,18 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import NavBar from '../Navbar';
 
 function HomePage() {
-    const navigate = useNavigate();
     return (
         <div>
-            <header className="Form-Header">
-                <div className='Form'>
-                    <button onClick={() => navigate('/Login')}>Login</button>
-                    <button onClick={() => navigate('/RegisterBusiness')}>Register A Business</button>
-                    <button onClick={() => navigate('/Register')}>Register A User</button>
-                    <button onClick={() => navigate('/Map')}>Map</button>
-                </div>
-            </header>
+            { <NavBar/>  } 
+                    <div class="main">
+                    <div class="main_container">
+                        <div class="main_content">
+                        <h1>Welcome to The Food Fighters' Donation Connector!</h1>
+                        <p>We aim to increase availability of food and personal items to individuals in need.</p>
+                        </div>
+                    </div>
+                    </div>
         </div>
     );
 }

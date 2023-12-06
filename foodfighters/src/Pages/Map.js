@@ -1,10 +1,12 @@
 import { React, useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { FullscreenControl } from "react-leaflet-fullscreen";
+
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "react-leaflet-fullscreen/styles.css";
 import user from './Authorization/User';
+import NavBar from '../Navbar';
 
 /* TODOs
 - Maybe add locate user button (map.locate() call)
@@ -64,39 +66,48 @@ export function Map() {
     })
                 
     return (
-        <div>
-            <header className="Map-header">
-                Hello, {user.name}
-                {/* Map's default location in map is Gainesville */}
-                <MapContainer center={[29.6520, -82.3250] } zoom={13}>
-                    <TileLayer
-                        attribution="https://www.openstreetmap.org/copyright"
-                        url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                    <FullscreenControl position='topleft' forceSeparateButton='true' />
+        <div style={{height:'100vh'}}>
+            { <NavBar/> }
+            <div className="main">
+                <div className="main_container">
+                    <div className="main_content"></div>
+                        <header className="Map-header">
+                            Hello, {user.name}
+                            {/* Map's default location in map is Gainesville */}
+                            <div className="map-container">
+                            <MapContainer center={[29.6520, -82.3250] } zoom={13}>
+                                <TileLayer
+                                    attribution="https://www.openstreetmap.org/copyright"
+                                    url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                />
+                                <FullscreenControl position='topleft' forceSeparateButton='true' />
 
-                    {/* when records are updated, create marker for each record located at stored coordinates */}
-                    {records && records.map(marker => (
-                        <Marker 
-                            position={[marker.lat, marker.lon]} 
-                            icon={businessIcon}>
-                            {
-                                <Popup className="business-popup">
-                                    <div className="content">
-                                        <h2 className='business-name'><b>{marker.name}</b></h2>
-                                        <p className='business-contact'>
-                                            <b>Contact Information</b><br/>
-                                            Address: {marker.address.substring(0, marker.address.lastIndexOf(","))}<br/>
-                                            Email: {marker.email}<br/>
-                                        </p>
-                                    </div>
-                                </Popup>
-                            }
-                        </Marker>
-                    ))}
-                </MapContainer>
-            </header>
-            {businessList()}
+                                {/* when records are updated, create marker for each record located at stored coordinates */}
+                                {records && records.map(marker => (
+                                    <Marker 
+                                        position={[marker.lat, marker.lon]} 
+                                        icon={businessIcon}>
+                                        {
+                                            <Popup className="business-popup">
+                                                <div className="content">
+                                                    <h2 className='business-name'><b>{marker.name}</b></h2>
+                                                    <p className='business-contact'>
+                                                        <b>Contact Information</b><br/>
+                                                        Address: {marker.address.substring(0, marker.address.lastIndexOf(","))}<br/>
+                                                        Email: {marker.email}<br/>
+                                                    </p>
+                                                </div>
+                                            </Popup>
+                                        }
+                                    </Marker>
+                                ))}
+                            </MapContainer>
+                            </div>
+                        </header>
+                </div>
+                <b style={{fontSize: "24px"}}>List of test businesses in db</b>
+                {businessList()}
+            </div>
         </div>
     );
 }
