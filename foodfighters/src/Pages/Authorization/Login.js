@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import user from './User';
 import 'reactjs-popup/dist/index.css';
 import NavBar from '../../Navbar';
 import user from './User';
@@ -10,6 +11,7 @@ export function Login() {
     const [errorPopup, setErrorPopup] = useState(false); 
     const [logPop, setLogPop] = useState(false)
     const navigate = useNavigate();
+    // handling the submit button action
     async function handleSubmit(event) {
         event.preventDefault();
         // api call to check if account exists

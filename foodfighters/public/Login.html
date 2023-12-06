@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FOOD FIGHTERS</title>
+    <link rel="stylesheet" href="pages.css" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <nav class="navigation">
+      <div class="nav_container">
+        <a href="/" id="nav_logo"><b>FOOD<br>FIGHTERS</b></a>
+        <div class="nav_toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav_menu">
+          <li class="nav_item">
+            <a href="Login.html" class="nav_links">
+              Login
+            </a>
+          </li>
+          <li class="nav_item">
+            <a href="RegisterBusiness.html" class="nav_links">
+              Business Registration
+            </a>
+          </li>
+          <li class="nav_item">
+            <a href="Register.html" class="nav_links">
+              Standard Registration
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="main">
+      <div class="main_container">
+        <div class="main_content">
+          <h1>Hello, User!</h1>
+          <p>Please Log In<br><br>If you do not have an account, please create a business or standard account.<br><br></p>
+          <button onclick="document.getElementById('logpop').style.display='block'" class="logbut">Login</button>
+          <div id="logpop" class="popup">
+            <form class="popup-content animation" action="tobefilled" method="post">
+              <div class="toppop">
+                <span onclick="document.getElementById('logpop').style.display='none'" class="closepop" title="Close">&times;</span>
+              </div>
+              <div class="popcontainer">
+                <label for="email"><b><br><br>Email</b></label>
+                <input type="text" placeholder="youremail@gmail.com" name="email" required>
+                <label for="password"><b><br><br>Password</b></label>
+                <input type="password" placeholder="********" name="password" required>
+                <label><br><br></label>
+                <button type="submit" class="submitbut">Submit</button>
+                <label><br><br></label>
+              </div>
+            </form>
+          </div>
+          <script>
+            var popup = document.getElementById('logpop');
+            window.onclick = function(event) {
+              if (event.target == popup) {
+                popup.style.display = "none";
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </div>
+  
+    </form>
+  </body>
+</html>

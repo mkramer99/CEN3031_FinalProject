@@ -64,7 +64,11 @@ recordRoutes.route("/Users/Get/One").post(function (req, res) {
 recordRoutes.route("/Businesses/Get/One").post(function (req, res) {
   let db_connect = dbo.getDb();
   console.log("Getting business account");
-  db_connect.collection("Businesses").findOne({email: req.params.email})
+  let myobj = {
+    email: req.body.email,
+    password: req.body.password
+  };
+  db_connect.collection("Businesses").findOne(myobj)
   .then((data) => {
      console.log(data);
      res.json(data);

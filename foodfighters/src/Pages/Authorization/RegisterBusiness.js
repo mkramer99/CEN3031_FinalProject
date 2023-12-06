@@ -47,6 +47,7 @@ export function RegisterBusiness() {
                 setErrorPopup(true);
             } else {
                 // if no existing account, create new one
+                user.name = formData.name;
                 let response = await fetch("http://localhost:8080/RegisterBusiness", {
                     method: "POST",
                     headers: {

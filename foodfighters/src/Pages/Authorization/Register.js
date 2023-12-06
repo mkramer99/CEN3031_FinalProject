@@ -37,6 +37,7 @@ export function Register() {
                 // popup to display error
                 setErrorPopup(true);
             } else {
+                user.name = formData.firstName;
                 // if no existing account, create new one
                 /* eslint-disable no-unused-vars */
                 let response = await fetch("http://localhost:8080/Register", {

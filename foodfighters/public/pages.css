@@ -1,0 +1,289 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Andale Mono', monospace;
+  }
+  
+  .navigation {
+    background: #151146;
+    height: 100 px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+  }
+  
+  .nav_container {
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    z-index: 1;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+  
+  #nav_logo {
+    background-image: linear-gradient(to top, #456FD9, #E3E4DB, #456FD9);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2.5rem;
+  }
+  
+  .nav_menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    text-align: center;
+  }
+  
+  .nav_item {
+    height: 70px;
+  }
+  
+  .nav_links {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+  }
+  
+  .nav_links:hover {
+    color: #456FD9;
+    transition: all 0.2s ease;
+  }
+  
+  .main {
+    background-color: #E3E4DB;
+  }
+  
+  .main_container {
+    display: grid;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    margin: 0 auto;
+    height: 90vh;
+    background-color: #E3E4DB;
+    z-index: 1;
+    width: 100%;
+    padding: 0;
+  }
+  
+  .main_content h1 {
+    font-size: 2.8rem;
+    color:#151146
+  }
+  
+  .main_content p {
+    font-size: 1.3rem;
+    padding-top: 40px;
+  }
+
+  .main_content button {
+    background-color: #151146;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 2.5rem;
+  }
+
+  .logbut {
+    border-radius: 6px;
+  }
+  
+  
+  .Map-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(80px + 2vmin);
+    color: white;
+  }
+  /* map container */
+  .leaflet-container {
+    margin:auto;
+    height: 80vh;
+    width: 70vw; 
+  }
+  /* Possible style for div marker
+  .business-marker p {
+    display:inline-block;
+    padding: 0.5rem;
+    width: 100px;
+    border-radius: 3px;
+    color:white;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#282c34;
+    transform:translate(-30%, -50%);
+  }*/
+  
+  .leaflet-fade-anim .leaflet-popup {
+    transition: all .3s alternate !important;
+  }
+  
+  .leaflet-popup-tip-container div {
+    background: rgba(0, 0, 0, 0);
+    box-shadow: none;
+  }
+  .leaflet-popup-content-wrapper {
+    padding:unset;
+    transform:translateY(5%);
+  }
+  
+  .business-name {
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  .business-contact {
+    margin-top: 5px !important;
+    margin-bottom: 0px !important;
+  }
+  .business-popup .leaflet-popup-content-wrapper {
+    border-radius: 50%;
+    color: aliceblue;
+    animation: popup-animate 0.5s alternate;
+    animation-fill-mode: both;  
+    background-color: #282c34;
+    background: rgba(64,174,59,255);
+    height: 0px;
+    border-radius: 50%px;
+    box-shadow: none;
+  }
+  
+  .business-popup .content * {
+    animation: fadeIn 0.3s alternate;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    90% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .leaflet-popup-close-button {
+    display: none; 
+  }
+  
+  @keyframes popup-animate {
+    0% {
+      transform: scale(0) translateY(100%);
+      opacity: 0;
+    }
+    30% { opacity: 0; }
+    31% { opacity: 1; }
+      100% {  
+      transform: scale(1) translateY(0%);
+      height: auto;
+      border-radius: 10px;
+      }
+  }
+
+  .logbut:hover {
+    background-color:#456FD9;
+    animation: bubble 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  @keyframes bubble {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .toppop {
+    margin: 30px 0 15px 0;
+    position: relative;
+    border-radius: 8px;
+  }
+
+  .popcontainer {
+    padding: 15px;
+    font-size: 1.6rem;
+  }
+
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #ffffff;
+    background-color: rgba(0,0,0,0.5);
+    padding-top: 140px;
+  }
+
+  .popup-content {
+    background-color: #ffffff;
+    margin: 5% auto 15% auto;
+    width: 30%;
+    border-radius: 10px;
+  }
+
+  .closepop {
+    position: absolute;
+    right: 20px;
+    top: 0;
+    color: #000000;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  .closepop:hover {
+    color: #ff0000;
+    cursor: pointer;
+  }
+
+  .submitbut {
+    border-radius: 6px;
+  }
+
+  .submitbut:hover {
+    background-color:#456FD9;
+    animation: bubble 0.3s ease-out;
+    cursor: pointer;
+  }
+
+  .animation {
+    -webkit-animation: animatezoom 0.5s;
+    animation: animatezoom 0.5s
+  }
+
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
