@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import NavBar from '../../Navbar';
+import user from './User';
 
 export function Login() {
     const [formData, setFormData] = useState({email: "", password: ""})
@@ -51,24 +52,27 @@ export function Login() {
                 body: JSON.stringify(newUser),
             });
             const record = await response.json();
+            // valid account
             if (record != null) {
                 console.log(record);
                 console.log("FOUND!");
+                user.name = record.firstName;
                 navigate('/Map');
             } else {
-                console.log("invalid login");
-                setShowPopup(true);
+                // no user account, try fetching business account
+                fetchBusinessAccount();
             }
         }
         fetchAccount();
     }
-
-
+    // keeps track of input changes in form
     const handleChange = (event) => {
         const {name, value } = event.target;
         setFormData((prevFormData) => ({...prevFormData, [name]: value }));
     }
 
+  
+    // returns form
     function form() {
         return (
             <div>
@@ -81,7 +85,7 @@ export function Login() {
                             <button onClick={()=>{setLogPop(true);
                             console.log("test");}} className="logbut">Login</button>
                             {logPop && <div id="logpop" className="popup">
-                                <form className="popup-content animation" onSubmit={handleSubmit} method="post">
+                                <form className="popup-content animation" onSubmit={handleSubmit}>
                                     <div className="toppop">
                                         <span onClick={()=>setLogPop(false)} className="closepop" title="Close">×</span>
                                     </div>
@@ -112,7 +116,6 @@ export function Login() {
     return (
         <div>
             {form()}
-            {/* <button onClick={() => auth()}>Submit</button> */}
         </div>
     )
 }
