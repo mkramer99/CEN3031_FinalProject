@@ -1,4 +1,5 @@
 import './App.css';
+import './pages.css'
 import HomePage from './Pages/HomePage';
 
 
@@ -7,6 +8,7 @@ function App() {
     <div className="App">
       <HomePage />
     </div>
+    
   );
 }
 
